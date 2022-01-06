@@ -29,27 +29,15 @@ client.on("ready", async () => {
 //msg commands
 client.on("messageCreate", (message) => {
     msg = message.content
-    const talkedRecently = new Set();
+    
+    if (msg == "%hello") {
+          message.reply("Hi!")
+    }
 
-    if (talkedRecently.has(message.author.id)) {
-        msg.channel.send("Wait 1 minute before getting typing this again. - " + msg.author);
-    } else {
-
-        if (msg == "%hello") {
-           message.reply("Hi!")
-        }
-        if (msg == "%help") {
-          message.reply({
-              content: "In Development, Update soon..."
-            })
-        }
-
-        // Adds the user to the set so that they can't talk for a minute
-        talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          // Removes the user from the set after a minute
-       talkedRecently.delete(message.author.id);
-     }, 60000);
+    if (msg == "%help") {
+        message.reply({
+            content: "In Development, Update soon..."
+        })
     }
 })
 
@@ -57,9 +45,7 @@ client.on("messageCreate", (message) => {
 const welcomeChannelId = "688236695950327826"
 
 client.on("guildMemberAdd", async (member) => {
-    member.guild.channels.cache.get(welcomeChannelId).send({
-        content: `<@${member.id}> Welcome to the server!`
-    })
+    member.guild.channels.cache.get(welcomeChannelId).send(`<@${member.id}> Welcome to the server!`)
 })
 
 client.login(process.env.TOKEN)
