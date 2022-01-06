@@ -5,12 +5,16 @@ const client = new discord.Client({
     intents: [
         "GUILDS",
         "GUILD_MESSAGES",
-        "GUILD_MEMBERS"
+        "GUILD_MEMBERS",
+        "GUILD_PRESENCES"
     ]
 })
 
+
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}`)
+    client.user.setActivity('your illegal actions', { type: 'WATCHING' });
+    
 })
 
 client.on("messageCreate", (message) => {
