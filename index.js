@@ -41,11 +41,11 @@ client.on("messageCreate", (message) => {
     }
 })
 
-//welcome module
-const welcomeChannelId = "688236695950327826"
+//welcome module (disabled because errors)
+// const welcomeChannelId = "688236695950327826"
 
-client.on("guildMemberAdd", async (member) => {
-    member.guild.channels.cache.get(welcomeChannelId).send(`<@${member.id}> Welcome to the server!`)
-})
+// client.on("guildMemberAdd", async (member) => {
+//     member.guild.channels.cache.get(welcomeChannelId).send(`<@${member.id}> Welcome to the server!`)
+// })
 
 client.login(process.env.TOKEN)
