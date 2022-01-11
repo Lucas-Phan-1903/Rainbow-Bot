@@ -16,6 +16,7 @@ const wait = require("util").promisify(setTimeout);
 client.on("ready", async () => {
     console.log(`Logged in as ${client.user.tag}`)
     //presence module
+    console.log("Started Presence Modules")
     while (true) {
         client.user.setActivity('your illegal actions', { type: 'WATCHING' });
         await wait(15000)
@@ -29,15 +30,18 @@ client.on("ready", async () => {
 //msg commands
 client.on("messageCreate", (message) => {
     msg = message.content
-    
+
     if (msg == "%hello") {
           message.reply("Hi!")
+          .then()
+          console.log(`has executed`)
     }
 
     if (msg == "%help") {
         message.reply({
             content: "In Development, Update soon..."
         })
+        console.log(msgAuthor)
     }
 })
 
