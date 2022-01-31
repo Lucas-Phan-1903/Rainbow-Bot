@@ -33,15 +33,12 @@ client.on("messageCreate", (message) => {
 
     if (msg == "%hello") {
           message.reply("Hi!")
-          .then()
-          console.log(`has executed`)
     }
 
     if (msg == "%help") {
         message.reply({
             content: "In Development, Update soon..."
         })
-        console.log(msgAuthor)
     }
 })
 
