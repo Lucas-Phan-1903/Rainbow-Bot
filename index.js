@@ -27,19 +27,31 @@ client.on("ready", async () => {
     }
 })
 
-//msg commands
+//Commands
 client.on("messageCreate", (message) => {
+    const prefix = "%"
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+    const args = message.content.slice(prefix.length).trim().split(' ');
+    const command = args.shift().toLowerCase();
     msg = message.content
     channel = message.channel
+    member = message.member
 
-    if (msg == "%hello") {
-          message.reply("Hi!")
-    }
+    if (command === 'kick') {
+        if (!member.roles.cache.has('940549637981483058')) {
+            return message.reply("`You don't have permission to execute this command!`");
+        }
+        if (!message.mentions.users.size) {
+        	return message.reply('`You forgot the user you want to kick! Arg: %kick [User] [Reason]`');
+        }
+        const TaggedUser = message.mentions.users.first();
+        const Target = message.mentions.members.first();
+        let kReason = args.join(" ").slice(22);
 
-    if (msg == "%help") {
-        message.reply({
-            content: "In Development, Update soon..."
-        })
+        Target.kick('Testing')
+        console.log(kReason)
+
     }
     if (msg == "%invite") {
         channel.createInvite()
