@@ -30,6 +30,7 @@ client.on("ready", async () => {
 //msg commands
 client.on("messageCreate", (message) => {
     msg = message.content
+    channel = message.channel
 
     if (msg == "%hello") {
           message.reply("Hi!")
@@ -40,13 +41,18 @@ client.on("messageCreate", (message) => {
             content: "In Development, Update soon..."
         })
     }
+    if (msg == "%invite") {
+        channel.createInvite()
+            .then(invite => message.reply(`Here! discord.gg/${invite.code}`))
+            .catch(console.error)
+    }
 })
 
-//welcome module (disabled because errors)
-// const welcomeChannelId = "688236695950327826"
+// welcome module (disabled because errors)
+ const welcomeChannelId = "688236695950327826"
 
-// client.on("guildMemberAdd", async (member) => {
-//     member.guild.channels.cache.get(welcomeChannelId).send(`<@${member.id}> Welcome to the server!`)
-// })
+ client.on("guildMemberAdd", async (member) => {
+     member.guild.channels.cache.get(welcomeChannelId).send(`<@${member.id}> Welcome to the server!`)
+ })
 
 client.login(process.env.TOKEN)
