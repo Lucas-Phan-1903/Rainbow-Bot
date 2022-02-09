@@ -5,7 +5,7 @@ module.exports = {
 	execute(message) {
 	        const discord = require('discord.js')
 
-	        const prefix = '%'
+	        const prefix = '!'
 	        const args = message.content.slice(prefix.length).split(' ');
 	        msg = message.channel
 	        channel = message.channel
@@ -31,15 +31,24 @@ module.exports = {
                 kReason = " No Reason Has Given"
             }
 
-            Target.kick(kReason)
-            console.log(`${TaggedUser.username}#${TaggedUser.discriminator} was kicked |${kReason}`)
+            //noPermEmbed
+            const noPermEmbed = new discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setDescription('My role isn\'t high enough to moderate this user. Move the Rainbow role up above other roles.')
 
-            //kick embed
-            const kEmbed = new discord.MessageEmbed()
-                .setColor('#90ee90')
-                .setDescription(`**${TaggedUser.username}${TaggedUser.discriminator} was kicked** |${kReason}.`)
+            if (Target.kickable == true) {
+                Target.kick(kReason)
+                            console.log(`${TaggedUser.username}#${TaggedUser.discriminator} was kicked |${kReason}`)
 
-            //send it
-            channel.send({ embeds: [kEmbed] });
+                            //kick embed
+                            const kEmbed = new discord.MessageEmbed()
+                                .setColor('#90ee90')
+                                .setDescription(`**${TaggedUser.username}${TaggedUser.discriminator} was kicked** |${kReason}.`)
+
+                            //send it
+                            channel.send({ embeds: [kEmbed] });
+            } else {
+                return channel.send({ embeds: [noPermEmbed] })
+            }
 	},
 };

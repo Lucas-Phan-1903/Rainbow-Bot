@@ -19,7 +19,7 @@ module.exports = {
             .setDescription('That doesn\'t seem to be a valid number.')
         const minNMaxEmbed = new discord.MessageEmbed()
             .setColor('#00ffff')
-            .setDescription('You need to input a number between 2 and 100.')
+            .setDescription('You need to input a number between 2 and 10000.')
         const pEmbed = new discord.MessageEmbed()
             .setColor('#90ee90')
             .setDescription(`You have purged ${amount} messages`)
@@ -27,13 +27,13 @@ module.exports = {
         async function purge() {
             channel.bulkDelete(amount)
             channel.send({ embeds: [pEmbed] })
-            await wait(1)
+            await wait(0.1)
             channel.bulkDelete(1)
         }
 
         if (isNaN(amount)) {
             return channel.send({ embeds: [errorNumEmbed] })
-        } else if (amount < 2 || amount > 100) {
+        } else if (amount < 2 || amount > 10000) {
             channel.send({ embeds: [minNMaxEmbed] });
         } else {
             purge();

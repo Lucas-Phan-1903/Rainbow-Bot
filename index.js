@@ -11,7 +11,7 @@ const client = new discord.Client({
     ]
 })
 
-const prefix = '%'
+const prefix = '!'
 const wait = require("util").promisify(setTimeout);
 
 //on start
@@ -81,14 +81,11 @@ client.on('messageCreate', message => {
     if (command === 'purge') {
         client.commands.get('purge').execute(message);
     }
+    if (command === 'invite') {
+        client.commands.get('invite').execute(message);
+    }
 })
 
-//    //Misc/Fun Module
-//    if (msg == "%invite") {
-//        channel.createInvite()
-//            .then(invite => message.reply(`Here! discord.gg/${invite.code}`))
-//            .catch(console.error)
-//    }
 
 
 // welcome module (disabled because errors)
