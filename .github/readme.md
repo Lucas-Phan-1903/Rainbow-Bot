@@ -1,5 +1,5 @@
 
-![This is a image](E:/Rainbow-Discord-Bot/assets/Banner.png)
+![This is a image](./assets/Banner.png)
 # Rainbow Discord Bot
 A Small Bot Project of Mitelite,
 ***
