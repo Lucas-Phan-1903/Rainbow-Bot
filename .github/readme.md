@@ -1,11 +1,19 @@
+
+![This is a image](E:/Rainbow-Discord-Bot/assets/Banner.png)
 # Rainbow Discord Bot
+A Small Bot Project of Mitelite,
 ***
-### Features:
->- New misc bot
->- In Development
->- Made by Mitelite#5365
+### Features
+- Moderation System, Misc and fun commands, Quotes and Images API
+
 ***
-### Developers:
+### Developers
 - Mitelite
+***
+### Progress
+- 2/? Moderation Commands
+- 1/? Misc & Fun Commands
+- Help Command In Progress 
+
 
 
