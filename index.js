@@ -1,6 +1,7 @@
 const discord = require("discord.js")
 const fs = require("fs")
 require('dotenv').config()
+const { prefix } = require("E:/Rainbow-Discord-Bot/config.json")
 
 const client = new discord.Client({
     intents: [
@@ -11,20 +12,25 @@ const client = new discord.Client({
     ]
 })
 
-const prefix = '!'
 const wait = require("util").promisify(setTimeout);
 
 //on start
 client.on("ready", async () => {
-    console.log(`Logged in as ${client.user.tag}`)
-    //presence module
-    console.log("Started Presence Modules")
+    //startup Logs
+    console.log(`Logged in as ${client.user.tag}...`)
+    await wait (20)
+    console.log("Started Presence Modules...")
+    await wait (20)
+    console.log('Welcome Module Enable: ' + enableWelcomeModule)
+    await wait (50)
+    console.log('Successfully load up Rainbow Discord Bot!')
+    //Presence Module
     while (true) {
         client.user.setActivity('your illegal actions', { type: 'WATCHING' });
         await wait(15000)
         client.user.setActivity('Rainbow', { type: 'PLAYING' });
         await wait(15000)
-        client.user.setActivity('%help | In Development', { type: 'PLAYING' })
+        client.user.setActivity(`${prefix}help | In Development`, { type: 'PLAYING' })
         await wait(15000)
     }
 })
@@ -84,15 +90,20 @@ client.on('messageCreate', message => {
     if (command === 'invite') {
         client.commands.get('invite').execute(message);
     }
+    if (command === 'help') {
+        client.commands.get('help').execute(message);
+    }
 })
 
-
+enableWelcomeModule = false
 
 // welcome module (disabled because errors)
- const welcomeChannelId = "688236695950327826"
+if (enableWelcomeModule == true) {
+    const welcomeChannelId = "688236695950327826"
 
- client.on("guildMemberAdd", async (member) => {
-     member.guild.channels.cache.get(welcomeChannelId).send(`<@${member.id}> Welcome to the server!`)
- })
+    client.on("guildMemberAdd", async (member) => {
+        member.guild.channels.cache.get(welcomeChannelId).send(`<@${member.id}> Welcome to the server!`)
+    })
+}
 
 client.login(process.env.TOKEN)

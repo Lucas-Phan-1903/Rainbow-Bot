@@ -5,11 +5,12 @@ module.exports = {
 	execute(message) {
 	        const discord = require('discord.js')
 
-	        const prefix = '!'
+	        const { prefix } = require("E:/Rainbow-Discord-Bot/config.json")
 	        const args = message.content.slice(prefix.length).split(' ');
 	        msg = message.channel
 	        channel = message.channel
 	        member = message.member
+            author = message.author
 
             if (!member.roles.cache.has('940549637981483058')) {
                 return channel.send("`You don't have permission to execute this command!`");
@@ -18,7 +19,7 @@ module.exports = {
             //args Embed
             const argsEmbed = new discord.MessageEmbed()
                 .setColor('#ff0000')
-                .setDescription('You forgot the user you want to kick! Arg: `%kick [User] [Reason]`')
+                .setDescription(`You forgot the user you want to kick! Arg: ${prefix}kick [User] [Reason]`)
 
             if (!message.mentions.users.size) {
             	return channel.send({ embeds: [argsEmbed] });
@@ -38,7 +39,7 @@ module.exports = {
 
             if (Target.kickable == true) {
                 Target.kick(kReason)
-                            console.log(`${TaggedUser.username}#${TaggedUser.discriminator} was kicked |${kReason}`)
+                            console.log(`${TaggedUser.username}#${TaggedUser.discriminator} was kicked |${kReason} by ${author.username}#${author.discriminator}`)
 
                             //kick embed
                             const kEmbed = new discord.MessageEmbed()
