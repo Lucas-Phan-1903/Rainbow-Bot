@@ -93,6 +93,12 @@ client.on('messageCreate', message => {
     if (command === 'help') {
         client.commands.get('help').execute(message);
     }
+    if (command === 'minecraftaccount') {
+        client.commands.get('minecraftaccount').execute(message);
+    }
+    if (command === 'image') {
+        client.commands.get('image').execute(message);
+    }
 })
 
 enableWelcomeModule = false
