@@ -60,7 +60,7 @@ client.on('messageCreate', message => {
     const now = Date.now();
     const timestamps = cooldowns.get(command.name);
     const cooldownAmount = (command.cooldown || 3) * 1000;
-    const cooldownEmbed = new discord.messageEmbed()
+    const cooldownEmbed = new discord.MessageEmbed()
         .setColor('#ff0000')
         .setDescription('You are a bit quickly there.')
 
@@ -77,6 +77,9 @@ client.on('messageCreate', message => {
 
     if (command === 'kick') {
         client.commands.get('kick').execute(message);
+    }
+    if (command === 'purge') {
+        client.commands.get('purge').execute(message);
     }
 })
 

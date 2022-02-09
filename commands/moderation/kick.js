@@ -12,10 +12,16 @@ module.exports = {
 	        member = message.member
 
             if (!member.roles.cache.has('940549637981483058')) {
-                return message.reply("`You don't have permission to execute this command!`");
+                return channel.send("`You don't have permission to execute this command!`");
             }
+
+            //args Embed
+            const argsEmbed = new discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setDescription('You forgot the user you want to kick! Arg: `%kick [User] [Reason]`')
+
             if (!message.mentions.users.size) {
-            	return message.reply('`You forgot the user you want to kick! Arg: %kick [User] [Reason]`');
+            	return channel.send({ embeds: [argsEmbed] });
             }
             const TaggedUser = message.mentions.users.first();
             const Target = message.mentions.members.first();
