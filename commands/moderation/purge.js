@@ -20,7 +20,7 @@ module.exports = {
             .setDescription(`:x: You forgot how many messages you want to purge! Arg: ${prefix}purge [amount of messages]`)
         const minNMaxEmbed = new discord.MessageEmbed()
             .setColor('#00ffff')
-            .setDescription('You need to input a number between 2 and 10000.')
+            .setDescription('You need to input a number between 2 and 100.')
         const pEmbed = new discord.MessageEmbed()
             .setColor('#90ee90')
             .setDescription(`:heavy_check_mark: You have purged ${amount} messages`)
@@ -35,7 +35,7 @@ module.exports = {
 
         if (isNaN(amount)) {
             return channel.send({ embeds: [errorNumEmbed] })
-        } else if (amount < 2 || amount > 10000) {
+        } else if (amount < 2 || amount > 100) {
             channel.send({ embeds: [minNMaxEmbed] });
         } else {
             purge();

@@ -10,6 +10,7 @@ module.exports = {
 
         author = message.author
         channel = message.channel
+        const avatar = author.displayAvatarURL({ format: 'png', dynamic: false })
 
         const helpEmbed = new discord.MessageEmbed()
             .setColor('#ffed00')
@@ -19,7 +20,7 @@ module.exports = {
             .addField(':joy: Fun & Misc', '`invite` `image` `quote` `autochat` `hello` `minecraftaccount`')
             .setThumbnail('https://i.imgur.com/OmjWTNO.png')
             .setTimestamp()
-            .setFooter(`${author.username}#${author.discriminator} has requested.`, 'https://i.imgur.com/OmjWTNO.png')
+            .setFooter(`${author.username}#${author.discriminator} has requested.`, `${avatar}`)
 
             channel.send({ embeds: [helpEmbed] })
     }
