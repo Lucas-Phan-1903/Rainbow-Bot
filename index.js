@@ -1,4 +1,5 @@
 const discord = require("discord.js")
+const fs = require("fs")
 require('dotenv').config()
 
 const client = new discord.Client({
@@ -10,6 +11,7 @@ const client = new discord.Client({
     ]
 })
 
+const prefix = '%'
 const wait = require("util").promisify(setTimeout);
 
 //on start
@@ -27,38 +29,64 @@ client.on("ready", async () => {
     }
 })
 
-//Commands
-client.on("messageCreate", (message) => {
-    const prefix = "%"
+client.commands = new discord.Collection();
+client.cooldowns = new discord.Collection();
+
+
+const commandFolders = fs.readdirSync('./commands');
+
+for (const folder of commandFolders) {
+	const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
+	for (const file of commandFiles) {
+		const command = require(`./commands/${folder}/${file}`);
+		client.commands.set(command.name, command);
+	}
+}
+
+client.on('messageCreate', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-    const args = message.content.slice(prefix.length).trim().split(' ');
+    const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    msg = message.content
     channel = message.channel
-    member = message.member
+    msg = message.content
+
+    const { cooldowns } = client;
+
+    if (!cooldowns.has(command.name)) {
+    	cooldowns.set(command.name, new discord.Collection());
+    }
+
+    const now = Date.now();
+    const timestamps = cooldowns.get(command.name);
+    const cooldownAmount = (command.cooldown || 3) * 1000;
+    const cooldownEmbed = new discord.messageEmbed()
+        .setColor('#ff0000')
+        .setDescription('You are a bit quickly there.')
+
+    if (timestamps.has(message.author.id)) {
+	    const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+	    if (now < expirationTime) {
+	    	const timeLeft = (expirationTime - now) / 1000;
+	    	return message.reply({ embed: [cooldownEmbed]});
+	    }
+    }
+    timestamps.set(message.author.id, now);
+    setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
     if (command === 'kick') {
-        if (!member.roles.cache.has('940549637981483058')) {
-            return message.reply("`You don't have permission to execute this command!`");
-        }
-        if (!message.mentions.users.size) {
-        	return message.reply('`You forgot the user you want to kick! Arg: %kick [User] [Reason]`');
-        }
-        const TaggedUser = message.mentions.users.first();
-        const Target = message.mentions.members.first();
-        let kReason = args.join(" ").slice(22);
-
-        Target.kick('Testing')
-        console.log(kReason)
-
-    }
-    if (msg == "%invite") {
-        channel.createInvite()
-            .then(invite => message.reply(`Here! discord.gg/${invite.code}`))
-            .catch(console.error)
+        client.commands.get('kick').execute(message);
     }
 })
+
+//    //Misc/Fun Module
+//    if (msg == "%invite") {
+//        channel.createInvite()
+//            .then(invite => message.reply(`Here! discord.gg/${invite.code}`))
+//            .catch(console.error)
+//    }
+
 
 // welcome module (disabled because errors)
  const welcomeChannelId = "688236695950327826"
