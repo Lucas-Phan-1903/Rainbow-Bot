@@ -1,7 +1,7 @@
 const discord = require("discord.js")
 const fs = require("fs")
 require('dotenv').config()
-const { prefix } = require("E:/Rainbow-Discord-Bot/config.json")
+const { prefix } = require("./config.json")
 
 const client = new discord.Client({
     intents: [
@@ -99,7 +99,7 @@ enableWelcomeModule = false
 
 // welcome module (disabled because errors)
 if (enableWelcomeModule == true) {
-    const welcomeChannelId = "688236695950327826"
+    const welcomeChannelId = require('./config.json')
 
     client.on("guildMemberAdd", async (member) => {
         member.guild.channels.cache.get(welcomeChannelId).send(`<@${member.id}> Welcome to the server!`)

@@ -5,7 +5,7 @@ module.exports = {
 	execute(message) {
 	        const discord = require('discord.js')
 
-	        const { prefix } = require("E:/Rainbow-Discord-Bot/config.json")
+	        const { prefix } = require("../../config.json")
 	        const args = message.content.slice(prefix.length).split(' ');
 	        msg = message.channel
 	        channel = message.channel
@@ -35,7 +35,7 @@ module.exports = {
             //noPermEmbed
             const noPermEmbed = new discord.MessageEmbed()
                 .setColor('#ff0000')
-                .setDescription('My role isn\'t high enough to moderate this user. Move the Rainbow role up above other roles.')
+                .setDescription(':x: My role isn\'t high enough to moderate this user. Move the Rainbow role up above other roles.')
 
             if (Target.kickable == true) {
                 Target.kick(kReason)
@@ -44,7 +44,7 @@ module.exports = {
                             //kick embed
                             const kEmbed = new discord.MessageEmbed()
                                 .setColor('#90ee90')
-                                .setDescription(`**${TaggedUser.username}${TaggedUser.discriminator} was kicked** |${kReason}.`)
+                                .setDescription(`:heavy_check_mark: **${TaggedUser.username}${TaggedUser.discriminator} was kicked** |${kReason}.`)
 
                             //send it
                             channel.send({ embeds: [kEmbed] });
