@@ -1,10 +1,11 @@
 module.exports = {
 	name: 'kick',
-	cooldown: '10',
+	cooldown: 10,
 	description: 'To kick a member.',
 	execute(message) {
 	        const discord = require('discord.js')
 
+            const { Permissions } = require('discord.js')
 	        const { prefix } = require("../../config.json")
 	        const args = message.content.slice(prefix.length).split(' ');
 	        msg = message.channel
@@ -12,7 +13,7 @@ module.exports = {
 	        member = message.member
             author = message.author
 
-            if (!member.roles.cache.has('940549637981483058')) {
+            if (!member.permissions.has(Permissions.FLAGS.KICK_MEMBERS, true)) {
                 return channel.send("`You don't have permission to execute this command!`");
             }
 
@@ -26,7 +27,7 @@ module.exports = {
             }
             const TaggedUser = message.mentions.users.first();
             const Target = message.mentions.members.first();
-            let kReason = args.join(" ").slice(27);
+            let kReason = args[2];
 
             if (!kReason) {
                 kReason = " No Reason Has Given"
@@ -39,12 +40,12 @@ module.exports = {
 
             if (Target.kickable == true) {
                 Target.kick(kReason)
-                            console.log(`${TaggedUser.username}#${TaggedUser.discriminator} was kicked |${kReason} by ${author.username}#${author.discriminator}`)
+                            console.log(`${TaggedUser.username}#${TaggedUser.discriminator} was kicked | ${kReason} by ${author.username}#${author.discriminator}`)
 
                             //kick embed
                             const kEmbed = new discord.MessageEmbed()
                                 .setColor('#90ee90')
-                                .setDescription(`:heavy_check_mark: **${TaggedUser.username}${TaggedUser.discriminator} was kicked** |${kReason}.`)
+                                .setDescription(`:heavy_check_mark: **${TaggedUser.username}${TaggedUser.discriminator} was kicked** | ${kReason}.`)
 
                             //send it
                             channel.send({ embeds: [kEmbed] });

@@ -3,7 +3,7 @@ const fetch = require('node-fetch')
 
 module.exports = {
     name: 'quote',
-    cooldown: '3',
+    cooldown: 3,
     description: 'Use API to generate a quote',
     execute(message) {
 
@@ -26,7 +26,6 @@ module.exports = {
                 .setColor('#ffed00')
                 .setTitle('Your quote was generated')
                 .setDescription(`${quote}`)
-                .setImage('https://picsum.photos/1280/720')
                 .setFooter(`${author.username}#${author.discriminator} has requested.`, `${avatar}`)
 
             message.channel.send({ embeds: [quoteEmbed] })

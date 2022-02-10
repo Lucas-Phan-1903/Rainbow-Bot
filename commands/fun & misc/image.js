@@ -1,6 +1,6 @@
 module.exports = {
     name: 'image',
-    cooldown: '5',
+    cooldown: 5,
     description: 'use API to create random image',
     execute(message) {
         const discord = require('discord.js')

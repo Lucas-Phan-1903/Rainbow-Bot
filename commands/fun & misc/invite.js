@@ -1,6 +1,6 @@
 module.exports = {
     name: 'invite',
-    cooldown: '5',
+    cooldown: 5,
     description: 'Create Invite Link',
     execute(message) {
         const discord = require('discord.js')
