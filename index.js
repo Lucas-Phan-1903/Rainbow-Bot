@@ -102,6 +102,9 @@ client.on('messageCreate', message => {
     if (command === 'hello') {
         client.commands.get('hello').execute(message);
     }
+    if (command === 'quote') {
+        client.commands.get('quote').execute(message);
+    }
 })
 
 enableWelcomeModule = false

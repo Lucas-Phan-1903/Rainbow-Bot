@@ -17,7 +17,7 @@ module.exports = {
         const helpEmbed = new discord.MessageEmbed()
             .setColor('#ffed00')
             .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
-            .setDescription(`Want to know more about each commands, write ${prefix}help [command]. This server prefix is **${prefix}**`)
+            .setDescription(`Write ${prefix}help [command] to find out more about each command. This server prefix is **${prefix}**`)
             .addField(':wrench: Moderation', '`ban` `kick` `mute` `purge` `spy` `alt-check`')
             .addField(':joy: Fun & Misc', '`invite` `image` `quote` `autochat` `hello` `minecraftaccount`')
             .setThumbnail('https://i.imgur.com/OmjWTNO.png')
@@ -78,6 +78,15 @@ module.exports = {
             .addField('**Argument:**', `${prefix}minecraftaccount`)
             .addField('**Example:**', `${prefix}minecraftaccount`)
 
+        const helpQuoteEmbed = new discord.MessageEmbed()
+            .setColor('#ffed00')
+            .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
+            .setTitle(`Command: ${prefix}quote`)
+            .addField('**Description:**', 'Use API to find a quote')
+            .addField('**Cooldown:**', '3s')
+            .addField('**Argument:**', `${prefix}quote`)
+            .addField('**Example:**', `${prefix}quote`)
+
 // Statement and commands
         if (command === 'kick') {
             channel.send({ embeds: [helpKickEmbed] })
@@ -91,7 +100,8 @@ module.exports = {
             channel.send({ embeds: [helpHelloEmbed] })
         } else if (command === 'minecraftaccount') {
             channel.send({ embeds: [helpMcEmbed] })
+        } else if (command === 'quote') {
+            channel.send({ embeds: [helpQuoteEmbed] })
         } else {channel.send({ embeds: [helpEmbed] })}
-
     }
 }
