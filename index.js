@@ -99,6 +99,9 @@ client.on('messageCreate', message => {
     if (command === 'image') {
         client.commands.get('image').execute(message);
     }
+    if (command === 'hello') {
+        client.commands.get('hello').execute(message);
+    }
 })
 
 enableWelcomeModule = false
