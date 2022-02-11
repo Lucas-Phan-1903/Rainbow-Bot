@@ -8,7 +8,8 @@ A Small Bot Project of Mitelite,
 
 ***
 ### Developers
-- Mitelite
+- @Mitelite
+- @tobycm
 ***
 ### Progress
 - 2/? Moderation Commands
