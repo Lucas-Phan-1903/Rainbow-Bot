@@ -21,7 +21,7 @@ module.exports = {
         //argsEmbed
         const argsEmbed = new discord.MessageEmbed()
             .setColor('#ff0000')
-            .setDescription(`You forgot the user you want to timeout. Args: ${prefix}timeout [User] [Time in seconds] [Reason no spaces]`)
+            .setDescription(`:x: You forgot the user you want to timeout. Args: ${prefix}timeout [User] [Time in seconds] [Reason no spaces]`)
 
         if (!message.mentions.users.size) {
             return channel.send({ embeds: [argsEmbed] })
