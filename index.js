@@ -57,6 +57,7 @@ client.on('messageCreate', message => {
     channel = message.channel
     msg = message.content
 
+    //Cooldown module
     const { cooldowns } = client;
 
     if (!cooldowns.has(command.name)) {
@@ -66,21 +67,22 @@ client.on('messageCreate', message => {
     const now = Date.now();
     const timestamps = cooldowns.get(command.name);
     const cooldownAmount = (command.cooldown || 3) * 1000;
-    const cooldownEmbed = new discord.MessageEmbed()
-        .setColor('#ff0000')
-        .setDescription('You are a bit quickly there.')
 
     if (timestamps.has(message.author.id)) {
 	    const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
 
 	    if (now < expirationTime) {
 	    	const timeLeft = (expirationTime - now) / 1000;
-	    	return message.reply({ embed: [cooldownEmbed]});
+	        const cooldownEmbed = new discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setDescription(`You are a bit quickly there. Please wait ${timeLeft.toFixed(1)} before using ${prefix}${command}`)
+	    	return message.reply({ embeds: [cooldownEmbed]});
 	    }
     }
     timestamps.set(message.author.id, now);
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
+    //register commands
     if (command === 'kick') {
         client.commands.get('kick').execute(message);
     }
@@ -105,11 +107,14 @@ client.on('messageCreate', message => {
     if (command === 'quote') {
         client.commands.get('quote').execute(message);
     }
+    if (command === 'timeout') {
+        client.commands.get('timeout').execute(message)
+    }
 })
 
 enableWelcomeModule = false
 
-// welcome module (disabled because errors)
+// Welcome Module
 if (enableWelcomeModule == true) {
     const welcomeChannelId = require('./config.json')
 

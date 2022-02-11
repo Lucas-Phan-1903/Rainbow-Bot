@@ -2,7 +2,7 @@ const { prefix } = require('../../config.json')
 
 module.exports = {
     name: 'help',
-    cooldown: '3',
+    cooldown: 3,
     description: 'list all commands inside the bot',
     execute(message) {
         const discord = require('discord.js')
@@ -18,7 +18,7 @@ module.exports = {
             .setColor('#ffed00')
             .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
             .setDescription(`Write ${prefix}help [command] to find out more about each command. This server prefix is **${prefix}**`)
-            .addField(':wrench: Moderation', '`ban` `kick` `mute` `purge` `spy` `alt-check`')
+            .addField(':wrench: Moderation', '`ban` `kick` `timeout` `purge` `spy` `alt-check`')
             .addField(':joy: Fun & Misc', '`invite` `image` `quote` `autochat` `hello` `minecraftaccount`')
             .setThumbnail('https://i.imgur.com/OmjWTNO.png')
             .setTimestamp()
@@ -87,6 +87,15 @@ module.exports = {
             .addField('**Argument:**', `${prefix}quote`)
             .addField('**Example:**', `${prefix}quote`)
 
+        const helpTimeOutEmbed = new discord.MessageEmbed()
+            .setColor('#ffed00')
+            .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
+            .setTitle(`Command: ${prefix}timeout`)
+            .addField('**Description:**', 'Timeout a user')
+            .addField('**Cooldown:**', '10s')
+            .addField('**Argument:**', `${prefix}timeout [User] [Time in seconds] [Reason no spaces]`)
+            .addField('**Example:**', `${prefix}timeout @Mitelite 900 Shut_Up`)
+
 // Statement and commands
         if (command === 'kick') {
             channel.send({ embeds: [helpKickEmbed] })
@@ -102,6 +111,8 @@ module.exports = {
             channel.send({ embeds: [helpMcEmbed] })
         } else if (command === 'quote') {
             channel.send({ embeds: [helpQuoteEmbed] })
+        } else if (command === 'timeout') {
+            channel.send({ embeds: [helpTimeOutEmbed] })
         } else {channel.send({ embeds: [helpEmbed] })}
     }
 }
