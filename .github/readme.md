@@ -15,6 +15,6 @@ A Small Bot Project of Mitelite,
 - 3/? Moderation Commands
 - 5/? Misc & Fun Commands
 - Help Command done 🎉
-
+- Splash command registor finished by tobycm 🎉
 
 
