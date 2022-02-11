@@ -94,7 +94,7 @@ module.exports = {
             .addField('**Description:**', 'Timeout a user')
             .addField('**Cooldown:**', '10s')
             .addField('**Argument:**', `${prefix}timeout [User] [Time in seconds] [Reason no spaces]`)
-            .addField('**Example:**', `${prefix}timeout [User] [Time in seconds] [Reason no spaces]`)
+            .addField('**Example:**', `${prefix}timeout @Mitelite 900 Shut Up`)
 
 // Statement and commands
         if (command === 'kick') {
