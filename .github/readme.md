@@ -8,12 +8,13 @@ A Small Bot Project of Mitelite,
 
 ***
 ### Developers
-- Mitelite
+- @Mitelite
+- @tobycm
 ***
 ### Progress
-- 2/? Moderation Commands
-- 1/? Misc & Fun Commands
-- Help Command In Progress 
+- 3/? Moderation Commands
+- 5/? Misc & Fun Commands
+- Help Command done 🎉
 
 
 
