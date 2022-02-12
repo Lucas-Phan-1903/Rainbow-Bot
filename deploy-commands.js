@@ -3,7 +3,8 @@ const fs = require("fs")
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const clientId = process.env.CLIENT_ID
+const config = require("./config.json")
+const clientId = JSON.parse(config).clientId
 
 const commandFolders = fs.readdirSync('./commands');
 
