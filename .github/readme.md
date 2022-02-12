@@ -1,5 +1,5 @@
 
-![This is a image](../assets/Banner.png)
+![This is a image]("../assets/Rainbow bot banner.png")
 # Rainbow Discord Bot
 A Small Bot Project of Mitelite,
 ***
@@ -8,13 +8,13 @@ A Small Bot Project of Mitelite,
 
 ***
 ### Developers
-- @Mitelite
-- @tobycm
+- [@Mitelite](https://github.com/Mitelite)
+- [@tobycm](https://github.com/tobycm)
 ***
 ### Progress
 - 3/? Moderation Commands
 - 5/? Misc & Fun Commands
 - Help Command done 🎉
-- Splash command registor finished by tobycm 🎉
+- Slash command register finished by tobycm 🎉
 
 
