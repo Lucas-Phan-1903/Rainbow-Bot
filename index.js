@@ -12,18 +12,21 @@ const client = new discord.Client({
     ]
 })
 
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
 const wait = require("util").promisify(setTimeout);
 
 //on start
 client.on("ready", async () => {
-    //startup Logs
-    console.log(`Logged in as ${client.user.tag}...`)
-    await wait (20)
-    console.log("Started Presence Modules...")
-    await wait (20)
-    console.log('Welcome Module Enable: ' + enableWelcomeModule)
-    await wait (50)
-    console.log('Successfully load up Rainbow Discord Bot!')
     //Presence Module
     while (true) {
         client.user.setActivity('your illegal actions', { type: 'WATCHING' });

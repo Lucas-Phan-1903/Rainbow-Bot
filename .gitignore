@@ -1,6 +1,6 @@
-.idea
+start.bat
+config.json
 .env
 package-lock.json
 node_modules/
-start.bat
-config.json
+.idea/
