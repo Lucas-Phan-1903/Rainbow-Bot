@@ -2,6 +2,7 @@ module.exports = {
     name: 'ready',
     once: true,
     execute(client) {
+        const {enableWelcomeModule} = require('../../config.json')
         const wait = require("util").promisify(setTimeout);
 
         async function on() {

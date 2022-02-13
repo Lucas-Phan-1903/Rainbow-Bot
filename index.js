@@ -12,20 +12,17 @@ const client = new discord.Client({
     ]
 })
 
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+client.commands = new discord.Collection();
+client.cooldowns = new discord.Collection();
+client.events = new discord.Collection();
 
-for (const file of eventFiles) {
-	const event = require(`./events/${file}`);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	} else {
-		client.on(event.name, (...args) => event.execute(...args));
-	}
-}
+['event_handler', 'command_handler'].forEach(handler => {
+    require(`./handlers/${handler}`)(client, discord);
+})
 
 const wait = require("util").promisify(setTimeout);
 
-//on start
+////on start
 client.on("ready", async () => {
     //Presence Module
     while (true) {
@@ -37,20 +34,6 @@ client.on("ready", async () => {
         await wait(15000)
     }
 })
-
-client.commands = new discord.Collection();
-client.cooldowns = new discord.Collection();
-
-
-const commandFolders = fs.readdirSync('./commands');
-
-for (const folder of commandFolders) {
-	const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
-	for (const file of commandFiles) {
-		const command = require(`./commands/${folder}/${file}`);
-		client.commands.set(command.name, command);
-	}
-}
 
 client.on('messageCreate', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -115,7 +98,7 @@ client.on('messageCreate', message => {
     }
 })
 
-enableWelcomeModule = false
+const {enableWelcomeModule} = require('./config.json')
 
 // Welcome Module
 if (enableWelcomeModule == true) {
