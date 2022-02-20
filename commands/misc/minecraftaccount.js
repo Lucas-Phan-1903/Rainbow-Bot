@@ -1,6 +1,7 @@
 module.exports = {
     name: 'minecraftaccount',
     cooldown: 2,
+    aliases: ['mcacc'],
     description: 'Minecraft Account Generator Rick Roll',
     execute(message) {
         const discord = require('discord.js')

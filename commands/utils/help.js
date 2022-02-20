@@ -74,6 +74,7 @@ module.exports = {
             .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
             .setTitle(`Command: ${prefix}minecraftaccount`)
             .addField('**Description:**', 'Generate Minecraft Account I guest?')
+            .addField('**Aliases:**', 'mcacc')
             .addField('**Cooldown:**', '2s')
             .addField('**Argument:**', `${prefix}minecraftaccount`)
             .addField('**Example:**', `${prefix}minecraftaccount`)
@@ -97,22 +98,34 @@ module.exports = {
             .addField('**Example:**', `${prefix}timeout @Mitelite 900 Shut_Up`)
 
 // Statement and commands
-        if (command === 'kick') {
-            channel.send({ embeds: [helpKickEmbed] })
-        } else if (command === 'purge') {
-            channel.send({ embeds: [helpPurgeEmbed] })
-        } else if (command === 'invite') {
-            channel.send({ embeds: [helpInviteEmbed] })
-        } else if (command === 'image') {
-            channel.send({ embeds: [helpImageEmbed] })
-        } else if (command === 'hello') {
-            channel.send({ embeds: [helpHelloEmbed] })
-        } else if (command === 'minecraftaccount') {
-            channel.send({ embeds: [helpMcEmbed] })
-        } else if (command === 'quote') {
-            channel.send({ embeds: [helpQuoteEmbed] })
-        } else if (command === 'timeout') {
-            channel.send({ embeds: [helpTimeOutEmbed] })
-        } else {channel.send({ embeds: [helpEmbed] })}
+        switch (command) {
+            case 'kick':
+                channel.send({ embeds: [helpKickEmbed] });
+                break;
+            case 'purge':
+                channel.send({ embeds: [helpPurgeEmbed] });
+                break;
+            case 'invite':
+                channel.send({ embeds: [helpInviteEmbed] });
+                break;
+            case 'image':
+                channel.send({ embeds: [helpImageEmbed] });
+                break;
+            case 'hello':
+                channel.send({ embeds: [helpHelloEmbed] });
+                break;
+            case 'minecraftaccount':case 'mcacc':
+                channel.send({ embeds: [helpMcEmbed] });
+                break;
+            case 'quote':
+                channel.send({ embeds: [helpQuoteEmbed] });
+                break;
+            case 'timeout':
+                channel.send({ embeds: [helpTimeOutEmbed] });
+                break;
+            default:
+                channel.send({ embeds: [helpEmbed] })
+                break;
+        }
     }
 }
