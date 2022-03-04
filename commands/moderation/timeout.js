@@ -45,24 +45,27 @@ module.exports = {
         if (!toReason) {
             toReason = " No reason has been given"
         }
-
-        if (isNaN(time)) {
-            return channel.send({ embeds: [errorNumEmbed] })
-        } else {
-            if (!Target.moderatable) {
-                return channel.send({ embeds: [noPermEmbed]})
+        try {
+            if (isNaN(time)) {
+                return channel.send({ embeds: [errorNumEmbed] })
             } else {
-                Target.timeout(time * 1000, toReason)
-                console.log(`${TaggedUser.username}#${TaggedUser.discriminator} was timeout-ed | ${toReason} by ${author.username}#${author.discriminator}`)
+                if (!Target.moderatable) {
+                    return channel.send({ embeds: [noPermEmbed]})
+                } else {
+                    Target.timeout(time * 1000, toReason)
+                    console.log(`${TaggedUser.username}#${TaggedUser.discriminator} was timeout-ed | ${toReason} by ${author.username}#${author.discriminator}`)
 
-                //timeout success embed
-                const toEmbed = new discord.MessageEmbed()
-                    .setColor('#90ee90')
-                    .setDescription(`:heavy_check_mark: **${TaggedUser.username}${TaggedUser.discriminator} was timeout-ed** | ${toReason}.`)
+                    //timeout success embed
+                    const toEmbed = new discord.MessageEmbed()
+                        .setColor('#90ee90')
+                        .setDescription(`:heavy_check_mark: **${TaggedUser.username}${TaggedUser.discriminator} was timeout-ed** | ${toReason}.`)
 
-                //send it
-                channel.send({ embeds: [toEmbed] });
+                    //send it
+                    channel.send({ embeds: [toEmbed] });
+                }
             }
+        } catch (err) {
+            console.log(err)
         }
     },
 }

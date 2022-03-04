@@ -42,7 +42,11 @@ module.exports = {
         } else if (amount < 2 || amount >= 100) {
             channel.send({ embeds: [minNMaxEmbed] });
         } else {
-            purge();
+            try {
+                purge()
+            } catch (err) {
+                console.log(err)
+            }
         }
     },
 }
