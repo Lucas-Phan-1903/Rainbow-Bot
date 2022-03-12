@@ -11,7 +11,7 @@ module.exports = {
         .setColor('#000000')
         .setTitle('Rainbow Source Code')
         .setThumbnail('https://imgur.com/p8rVI4a.png')
-        .setDescription('Test')
+        .setDescription('[https://github.com/mitelite/rainbow-bot/](https://github.com/mitelite/rainbow-bot)')
         .setFooter(`${author.username}#${author.discriminator} has requested.`, `${avatar}`);
 
         message.channel.send({embeds: [gitEmbed]});

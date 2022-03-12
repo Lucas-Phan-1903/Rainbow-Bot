@@ -17,9 +17,10 @@ module.exports = {
         const helpEmbed = new discord.MessageEmbed()
             .setColor('#ffed00')
             .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
-            .setDescription(`Write ${prefix}help [command] to find out more about each command. This server prefix is **${prefix}**`)
-            .addField(':wrench: Moderation', '`ban` `kick` `timeout` `purge` `spy` `alt-check`')
+            .setDescription('Write `' + prefix + 'help [command]` to find out more about each command. This server prefix is `' + prefix + '`')
+            .addField(':wrench: Moderation', '`ban` `kick` `timeout` `purge` `alt-check`')
             .addField(':joy: Fun & Misc', '`invite` `image` `quote` `autochat` `hello` `minecraftaccount`')
+            .addField(':key: Utils', '`help` `git`')
             .setThumbnail('https://i.imgur.com/OmjWTNO.png')
             .setTimestamp()
             .setFooter(`${author.username}#${author.discriminator} has requested.`, `${avatar}`)
@@ -96,6 +97,13 @@ module.exports = {
             .addField('**Cooldown:**', '10s')
             .addField('**Argument:**', `${prefix}timeout [User] [Time in seconds] [Reason no spaces]`)
             .addField('**Example:**', `${prefix}timeout @Mitelite 900 Shut_Up`)
+        const helpGitEmbed = new discord.MessageEmbed()
+            .setColor('#000000')
+            .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
+            .setTitle(`Command: ${prefix}git`)
+            .addField('**Description:**', 'Rainbow Open Source Code')
+            .addField('**Cooldown:**', '3s')
+            .addField('**Argument:**', `${prefix}git`)
 
 // Statement and commands
         switch (command) {
@@ -122,6 +130,9 @@ module.exports = {
                 break;
             case 'timeout':
                 channel.send({ embeds: [helpTimeOutEmbed] });
+                break;
+            case 'git':
+                channel.send({ embeds: [helpGitEmbed] })
                 break;
             default:
                 channel.send({ embeds: [helpEmbed] })
