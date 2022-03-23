@@ -2,11 +2,10 @@ module.exports = {
 	name: 'kick',
 	cooldown: 10,
 	description: 'To kick a member.',
-	execute(message) {
+	execute(message, prefix) {
 	        const discord = require('discord.js')
 
             const { Permissions } = require('discord.js')
-	        const { prefix } = require("../../config.json")
 	        const args = message.content.slice(prefix.length).split(' ');
 	        msg = message.channel
 	        channel = message.channel

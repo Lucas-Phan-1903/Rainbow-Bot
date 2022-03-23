@@ -1,20 +1,20 @@
 module.exports = {
     name: 'ready',
     once: true,
-    execute(client) {
-        const {enableWelcomeModule} = require('../../config.json')
+    execute(client, prefix) {
         const wait = require("util").promisify(setTimeout);
 
-        async function on() {
-            console.log(`Logged in as ${client.user.tag}...`)
-            await wait (20)
-            console.log("Started Presence Modules...")
-            await wait (20)
-            console.log('Welcome Module Enable: ' + enableWelcomeModule)
-            await wait (50)
-            console.log('Successfully load up Rainbow Discord Bot!')
+        console.log(`Logged in as ${client.user.tag}!`);
+
+        async function presenceUpdate() {
+                client.user.setActivity('your illegal actions', { type: 'WATCHING' });
+                await wait(15000)
+                client.user.setActivity('Rainbow', { type: 'PLAYING' });
+                await wait(15000)
+                client.user.setActivity(`${prefix}help | In Development`, { type: 'PLAYING' })
+                await wait(15000)
         }
 
-        on()
+        presenceUpdate();
     },
 }

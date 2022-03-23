@@ -2,11 +2,10 @@ module.exports = {
     name: 'purge',
     cooldown: 10,
     description: 'Bulk delete message',
-    execute(message) {
+    execute(message, prefix) {
         const discord = require('discord.js')
 
         const { Permissions } = require('discord.js')
-        const { prefix } = require("../../config.json")
         const args = message.content.slice(prefix.length).split(/ +/);
         msg = message.channel
         channel = message.channel

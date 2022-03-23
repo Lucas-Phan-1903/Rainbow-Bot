@@ -1,10 +1,8 @@
-const { prefix } = require('../../config.json')
-
 module.exports = {
     name: 'help',
     cooldown: 3,
     description: 'list all commands inside the bot',
-    execute(message) {
+    execute(message, prefix) {
         const discord = require('discord.js')
         const args = message.content.slice(prefix.length).split(/ +/);
 
