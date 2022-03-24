@@ -1,7 +1,7 @@
 const discord = require("discord.js")
 const fs = require("fs")
 require('dotenv').config()
-const {prefix} = require('./config.json');
+const {prefix} = "rb!";
 
 const client = new discord.Client({
     intents: [
@@ -23,7 +23,7 @@ client.events = new discord.Collection();
 client.on("messageCreate", message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-    const args = message.content.slice(prefix.length).split(/ +/);
+    const args = message.content.slice(prefix.length).split(" ");
     const command = args.shift().toLowerCase();
     channel = message.channel
     msg = message.content
