@@ -5,9 +5,9 @@ module.exports = {
     execute(message, prefix) {
         const discord = require('discord.js')
         const args = message.content.slice(prefix.length).split(" ");
-        command_list = []
-        author = message.author
-        channel = message.channel
+        const command_list = []
+        const author = message.author
+        const channel = message.channel
         const avatar = author.displayAvatarURL({ format: 'png', dynamic: false })
 
         for (const file of commandFiles) {
