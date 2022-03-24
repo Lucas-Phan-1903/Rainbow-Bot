@@ -28,7 +28,7 @@ module.exports = {
             .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
             .setTitle(`Command: ${prefix}kick`)
             .addField('**Description:**', 'Kick a member')
-            .addField('**Cooldown:**', '10s')
+            .addField('**Cooldown:**', '60s')
             .addField('**Argument:**', `${prefix}kick [user] [reason]`)
             .addField('**Example:**', `${prefix}kick @Mitelite Dumb`)
 
@@ -92,7 +92,7 @@ module.exports = {
             .setAuthor('Rainbow Help', 'https://i.imgur.com/OmjWTNO.png')
             .setTitle(`Command: ${prefix}timeout`)
             .addField('**Description:**', 'Timeout a user')
-            .addField('**Cooldown:**', '10s')
+            .addField('**Cooldown:**', '60s')
             .addField('**Argument:**', `${prefix}timeout [User] [Time in seconds] [Reason no spaces]`)
             .addField('**Example:**', `${prefix}timeout @Mitelite 900 Shut_Up`)
         const helpGitEmbed = new discord.MessageEmbed()
