@@ -11,6 +11,6 @@ A Small Bot Project of Mitelite,
 - [@tobycm](https://github.com/tobycm)
 ***
 ### Progress
-Basic commands modules :tick:
+Basic commands modules.
 
 ![This is a image](../assets/BannerRainbowBot.png)
