@@ -1,7 +1,7 @@
 const discord = require("discord.js")
 const fs = require("fs")
 require('dotenv').config()
-const { prefix } = require("./config.json");
+const {prefix} = require('./config.json');
 
 const client = new discord.Client({
     intents: [
@@ -21,7 +21,6 @@ client.events = new discord.Collection();
 })
 
 client.on("messageCreate", message => {
-    const {prefix} = require('./config.json');
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
     const args = message.content.slice(prefix.length).split(/ +/);
@@ -56,7 +55,7 @@ client.on("messageCreate", message => {
     setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
     try{
-        cmd.execute(message);
+        cmd.execute(message, prefix);
     } catch (err){
         message.reply("`There was an error trying to execute this command!`");
         console.log(err);
