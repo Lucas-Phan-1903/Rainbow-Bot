@@ -1,7 +1,7 @@
 const discord = require("discord.js")
 const fs = require("fs")
 require('dotenv').config()
-const {prefix} = "rb!";
+const {prefix} = require('./config.json');
 
 const client = new discord.Client({
     intents: [

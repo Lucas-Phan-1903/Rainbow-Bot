@@ -2,6 +2,8 @@ module.exports = {
 	name: 'kick',
 	cooldown: 10,
 	description: 'To kick a member.',
+    usage: 'kick <user> <reason>',
+    example: 'kick @Mitelite Dumb',
 	execute(message, prefix) {
 	        const discord = require('discord.js')
 
