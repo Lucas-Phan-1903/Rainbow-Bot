@@ -12,6 +12,6 @@
 ## License & Copyright
 © Mite A.K.A Phan Nhat Huy
 
-License under [MIT License](LICENSE)
+License under [MIT License](./LICENSE.md)
 ***
 ![This is a image](../assets/BannerRainbowBot.png)
