@@ -1,8 +1,9 @@
 module.exports = {
     name: 'ready',
     once: true,
-    execute(client, prefix) {
+    execute(client) {
         const wait = require("util").promisify(setTimeout);
+        const {prefix} = require('../../config.json');
 
         console.log(`Logged in as ${client.user.tag}!`);
 
